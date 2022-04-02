@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .temp{
+        
+        font-size: 100px;
+        display: flex;
+        font-family: Arial, Helvetica, sans-serif;
+        justify-content: center;
+        align-items: center;
+    }
+    .container{
+        display: flex;
+        font-family: Arial, Helvetica, sans-serif;
+        justify-content: center;
+        align-items: center;
+        font-size: 50px;
+
+    }
+</style>
+<body>
+    <div class="container">
+        <div>Room Temperature</div>
+    </div>
+    <div class="temp"></div>
+    <script>
+        var int_id = window.setInterval(get_temp, 500)
+        var display_element = document.querySelector(".temp")
+        function get_temp(){
+            axios.get("https://anassbelkadi.pythonanywhere.com/api/get_temp/").then(res=>{
+                display_element.textContent = res.data['temp']+ " C°"
+            })
+        }
+    </script>
+</body>
+</html>
